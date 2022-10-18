@@ -164,7 +164,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="row">
           <div class="col-md-12 form-group">
             <label for="message" class="col-form-label">Message</label>
-            <textarea name="message" id="message" cols="30" rows="7" class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $message; ?>"></textarea>
+            <textarea maxlength="500" name="message" id="message"  cols="30" rows="7" class="form-control <?php echo (!empty($message_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $message; ?>"></textarea>
+            <div id="counter"></div>
           </div>
         </div>
 
@@ -188,6 +189,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/sidebars.js"></script>
+
+    // used for textarea counter for contact message
+    <script>
+      const messageEle = document.getElementById('message');
+      const counterEle = document.getElementById('counter');
+
+      messageEle.addEventListener('input', function (e) {
+          const target = e.target;
+
+          // Get the `maxlength` attribute
+          const maxLength = target.getAttribute('maxlength');
+
+          // Count the current number of characters
+          const currentLength = target.value.length;
+
+          counterEle.innerHTML = `${currentLength}/${maxLength}`;
+      });
+    </script>
 
 </body>
 </html>
