@@ -4,8 +4,7 @@ Files: <br />
  <br />
 config.php: Used to connect to the MySQL database <br />
 contact.php: Contact Us page with form that submits to "contactus" table in MySQL DB <br />
-dashboard_frame.html: Data page loaded in an iframe to be scrollable. Will be php down the road. <br />
-dashboard.php: Dashboard page with menu and iframe. Checks login. <br />
+dashboard.php: Dashboard page with menu and fraud detail cards. Checks login. <br />
 fetch.php: Test page for fetching data from the MySQL DB <br />
 index.html: Home page. More to be done <br />
 login.php: Login checks credentials against "users" table in MySQL DB <br />
