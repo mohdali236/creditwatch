@@ -3,8 +3,8 @@
 require_once "config.php";
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = $email = "";
-$username_err = $password_err = $confirm_password_err = $email_err = "";
+$username = $password = $confirm_password = $email = $sec_question = $sec_answer = "";
+$username_err = $password_err = $confirm_password_err = $email_err = $sec_question_err = $sec_answer_err = "";
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -71,29 +71,50 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	} else{
         $email = trim($_POST["email"]);
     }
-    
+
+    // Validate security question and answer input
+    if(empty(trim($_POST["sec_question"]))){
+        $sec_question_err = "Please enter an security question of your choice.";
+    } elseif(empty(trim($_POST["sec_answer"]))){
+        $sec_answer_err = "Please provide an answer for your security question.";
+    } else{
+        $sec_question = trim($_POST["sec_question"]);
+        $sec_answer = strtolower(trim($_POST["sec_answer"]));
+    }
+
+
+
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($email_err)){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) 
+        && empty($email_err) && empty($sec_question_err) && empty($sec_answer_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
+        $sql = "INSERT INTO users (username, password, email, sec_question, sec_answer) VALUES (?, ?, ?, ?, ?)";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "sss", $param_username, $param_password, $param_email);
+            mysqli_stmt_bind_param($stmt, "sssss", $param_username, $param_password, $param_email, $sec_question, $sec_answer);
           
             // Set parameters
             $param_username = $username;
             $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
 			$param_email = $email;
+            $param_sec_question = $sec_question;
+            $param_sec_answer = $sec_answer;
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Prepare an insert statement
+
+                // Prepare an insert statement to create user's row in the contact table
                 $sql_contact = "INSERT INTO contact (username) VALUES (?)";
                 if($stmt2 = mysqli_prepare($link, $sql_contact)){
+                    // Bind variables to the prepared statement as parameters
                     mysqli_stmt_bind_param($stmt2, "s", $param_username);
+
+                    // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt2)){
+
+                        // Redirect after successful registration
                         header("location: login.php");
                     }
                 }
@@ -182,12 +203,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               <div class="col-md-4">
                 <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                    <input type="text" name="username" maxlength="50" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
                     <span class="invalid-feedback"><?php echo $username_err; ?></span>
                 </div>    
                 <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                    <input type="password" name="password" maxlength="255" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
                     <span class="invalid-feedback"><?php echo $password_err; ?></span>
                 </div>
                 <div class="form-group">
@@ -197,9 +218,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
     			<div class="form-group">
                     <label>E-mail</label>
-                    <input type="email" name="email" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                    <input type="email" name="email" maxlength="255" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
                     <span class="invalid-feedback"><?php echo $email_err; ?></span>
-                </div>    
+                </div>
+                <div class="form-group">
+                    <label>Security Question</label>
+                    <input type="text" name="sec_question" maxlength="100" class="form-control <?php echo (!empty($sec_question_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_question; ?>">
+                    <span class="invalid-feedback"><?php echo $sec_question_err; ?></span>
+                </div>
+                <div class="form-group">
+                    <label>Security Question Answer</label>
+                    <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
+                    <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
+                </div>        
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Submit">
                     <input type="reset" class="btn btn-secondary ml-2" value="Reset">

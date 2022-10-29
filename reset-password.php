@@ -10,13 +10,49 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
  
 // Include config file
 require_once "config.php";
- 
+
 // Define variables and initialize with empty values
-$new_password = $confirm_password = "";
-$new_password_err = $confirm_password_err = "";
- 
+$sec_question = $sec_answer = $sec_answer_chk = $new_password = $confirm_password = "";
+$sec_answer_err = $new_password_err = $confirm_password_err = "";
+
+
+// Get customer's security question to ask for answer
+// Prepare a select statement
+$sql = "SELECT sec_question FROM users WHERE id = ?";
+
+if($stmt = mysqli_prepare($link, $sql)){
+    // Bind variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "i", $param_id);
+    
+    // Set parameters
+    $param_id = $_SESSION["id"];
+    
+    // Attempt to execute the prepared statement
+    if(mysqli_stmt_execute($stmt)){
+        // Store results
+        mysqli_stmt_store_result($stmt);
+        // Bind result variables
+        mysqli_stmt_bind_result($stmt, $sec_question);
+        mysqli_stmt_fetch($stmt);
+
+    } else{
+        echo "Oops! Something went wrong. Please try again later.";
+    }
+
+    // Close statement
+    mysqli_stmt_close($stmt);
+}
+
+
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    // Confirm security question answer is not empty
+    if(empty(trim($_POST["sec_answer"]))){
+        $sec_answer_err = "Please enter an answer for your security question.";
+    } else{
+        $sec_answer = strtolower(trim($_POST["sec_answer"]));
+    }
  
     // Validate new password
     if(empty(trim($_POST["new_password"]))){
@@ -38,32 +74,67 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
         
     // Check input errors before updating the database
-    if(empty($new_password_err) && empty($confirm_password_err)){
-        // Prepare an update statement
-        $sql = "UPDATE users SET password = ? WHERE id = ?";
+    if(empty($sec_answer_err) && empty($new_password_err) && empty($confirm_password_err)){
+
+        // Prepare a select statement
+        $sql = "SELECT sec_answer FROM users WHERE id = ?";
         
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
+            mysqli_stmt_bind_param($stmt, "s", $param_id);
             
             // Set parameters
-            $param_password = password_hash($new_password, PASSWORD_DEFAULT);
             $param_id = $_SESSION["id"];
             
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
-                // Password updated successfully. Destroy the session, and redirect to login page
-                session_destroy();
-                header("location: login.php");
-                exit();
+                // Store result
+                mysqli_stmt_store_result($stmt);
+                // Bind result variables
+                mysqli_stmt_bind_result($stmt, $sec_answer_chk);
+                mysqli_stmt_fetch($stmt);
+
+                // Check if security answer matches
+                if($sec_answer == $sec_answer_chk){
+
+                    // Close previous statement
+                    mysqli_stmt_close($stmt);
+
+                    // Prepare an update statement
+                    $sql = "UPDATE users SET password = ? WHERE id = ?";
+                    
+                    if($stmt = mysqli_prepare($link, $sql)){
+                        // Bind variables to the prepared statement as parameters
+                        mysqli_stmt_bind_param($stmt, "si", $param_password, $param_id);
+                        
+                        // Set parameters
+                        $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+                        $param_id = $_SESSION["id"];
+                        
+                        // Attempt to execute the prepared statement
+                        if(mysqli_stmt_execute($stmt)){
+                            
+                            // Password updated successfully. Destroy the session, and redirect to login page
+                            session_destroy();
+                            header("location: login.php");
+                            exit();
+                        } else{
+                            echo "Oops! Something went wrong updating the password. Please try again later.";
+                        }
+
+                        // Close statement
+                        mysqli_stmt_close($stmt);
+                    }
+
+                } else {
+                    echo "Oops! Something went wrong. Please try again later.";
+                }
             } else{
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
         }
     }
+
     
     // Close connection
     mysqli_close($link);
@@ -166,7 +237,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="pt-5">
                     <h2>Reset Password</h2>
                     <p>Please fill out this form to reset your password.</p>
-                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <div class="form-group">
                             <label>New Password</label>
                             <input type="password" name="new_password" class="form-control <?php echo (!empty($new_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $new_password; ?>">
@@ -176,6 +247,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <label>Confirm Password</label>
                             <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>">
                             <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                        </div>
+                        <div class="form-group">
+                            <label><?php echo $sec_question; echo (strpos($sec_question, '?') !== false) ? '' : '?'; ?></label>
+                            <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
+                            <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary" value="Submit">
