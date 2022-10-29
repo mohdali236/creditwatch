@@ -17,7 +17,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="author" content="David Murray">
 
     <meta charset="UTF-8">
-    <title>CreditWatch User Profile</title>
+    <title>CreditWatch Payments Portal</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
 </head>
