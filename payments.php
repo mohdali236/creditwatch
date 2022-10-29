@@ -2,11 +2,12 @@
 // Initialize the session
 session_start();
  
-// Check if the user is logged in, if not then redirect him to login page
+// Check if the user is logged in, otherwise redirect to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
 ?>
  
 <!DOCTYPE html>
@@ -16,7 +17,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     <meta name="author" content="David Murray">
 
     <meta charset="UTF-8">
-    <title>Welcome to CreditWatch</title>
+    <title>CreditWatch User Profile</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
 </head>
@@ -61,7 +62,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a href="welcome.php" class="nav-link link-dark" aria-current="page">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
               Home
             </a>
@@ -85,7 +86,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
             </a>
           </li>
           <li>
-            <a href="payments.php" class="nav-link link-dark">
+            <a href="payments.php" class="nav-link active">
               <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#bi-credit-card"/></svg>
               Payments
             </a>
@@ -113,13 +114,109 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
         </div>
       </div>
   
-        <div class="container">
-                <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to</h1>
-                <img src="img/creditwatch_large.png" height="400"><br><br><br><br>
-                <p>
-                    <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-                    <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-                </p>
+        <div class="container rounded bg-white">
+            <div class="col-md-8 py-5 text-center">
+                <h2>Payments Portal</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                
+                    <h4 class="mb-3">Payment amount due</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <span>Total (USD):</span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong class="text-success">$20</strong>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <span>Due date:</span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <strong>November 12, 2022</strong>
+                        </div>
+                    </div>
+                    <hr class="mb-4">
+
+                    <h4 class="mb-3">Billing address</h4>
+                    <form class="needs-validation" novalidate="">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName">First name</label>
+                                <input type="text" class="form-control" id="firstName" placeholder="" value="" required="">
+                                <div class="invalid-feedback"> Valid first name is required. </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName">Last name</label>
+                                <input type="text" class="form-control" id="lastName" placeholder="" value="" required="">
+                                <div class="invalid-feedback"> Valid last name is required. </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email">Email <span class="text-muted">(Optional)</span></label>
+                            <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                            <div class="invalid-feedback"> Please enter a valid email address for shipping updates. </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address">Address Line 1</label>
+                            <input type="text" class="form-control" id="address" placeholder="1234 Main St" required="">
+                            <div class="invalid-feedback"> Please enter your shipping address. </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="address2">Address Line 2 <span class="text-muted">(Optional)</span></label>
+                            <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <label for="country">Country</label>
+                                <input type="text" class="form-control" id="country" placeholder="USA">
+                                <div class="invalid-feedback"> Please enter a valid country. </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="state">State</label>
+                                <input type="text" class="form-control" id="state" placeholder="Texas">
+                                <div class="invalid-feedback"> Please provide a valid state. </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="zip">Zip</label>
+                                <input type="text" class="form-control" id="zip" placeholder="" required="">
+                                <div class="invalid-feedback"> Zip code required. </div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <h4 class="mb-3">Payment</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback"> Name on card is required </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+                                <div class="invalid-feedback"> Credit card number is required </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+                                <div class="invalid-feedback"> Expiration date required </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-cvv">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+                                <div class="invalid-feedback"> Security code required </div>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        <button class="btn btn-primary" type="submit">Submit Payment</button>
+                    </form>
+                </div>
+            </div>
         </div>
 
     </main>
