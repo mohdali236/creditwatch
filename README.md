@@ -10,6 +10,7 @@ index.html: Home page. More to be done <br />
 login.php: Login checks credentials against "users" table in MySQL DB <br />
 logout.php: Destroys login session and redirects to login page <br />
 notifications.php: Notifications page. More to be done. Checks login. <br />
+payments.php: Payment portal for logged in customers. Pulls total due and due date. <br />
 profile.php: Customer can update profile details; updates "contact" table in MySQL DB. Checks login. <br />
 register.php: Registration inserts new records into "users" and "contact" table for user creation. Password is hashed. <br />
 reset-password.php: Updates password in "users" table in MySQL DB. Checks login and security question. <br />
