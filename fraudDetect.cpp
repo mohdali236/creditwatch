@@ -21,6 +21,8 @@ struct Transaction {
         a = amt; longitude = lon; latitude = lat;
     }
     bool operator <(const Transaction & transObj) const {
+        if(custID == transObj.custID)
+            return dateTime < transObj.dateTime;
         return custID < transObj.custID;
     }
     int custID, transID,dateTime;
@@ -53,38 +55,43 @@ int main(int argc, char **argv)
     
     int transAmt = 0; dateTime = 0;
     custID = -1;
-    list<int> timeList;
+    list<Transaction> sameCustList;
+    int fraudType;
     ofstream output;
-    int f1, f2, f3;
     output.open("output.csv");
+    output << argv[3] << "\n";
     for(const auto& transTrav : transList) {
         if(custID != transTrav.custID) {
-            timeList.sort();
-            for(int i: timeList) {
-                if(i - dateTime < 10) {//comparing time
-                    f1=1;
+            if(custID != -1) {
+                for(Transaction i: sameCustList) {
+                    if(i.amt >= 200) {
+                        fraudType+=2;
+                    }
+                    if(dateTime - i.dateTime < 20) {
+                        fraudType+=1;
+                    }
+                    if(i.latitude / latitude < .5 || i.latitude / latitude > 1.5) {
+                        fraudType+=4;
+                    } else if(i.longitude / longitude < .5 || i.longitude / longitude > 1.5) {
+                        fraudType+=4;
+                    }
+                    output << i.custID << ", " << i.transID << ", " << i.dateTime << ", " <<
+                    to_string((bool)(fraudType!=0)) << ", " << to_string(fraudType) << "\n";
+                    fraudType = 0;
                 }
+                transAmt =0; dateTime=0;
+                custID = transTrav.custID;
+                sameCustList.clear();
             }
-            output << custID << ", " << to_string((bool)(f1+f2+f3!=0)) << ", " << to_string(f1+f2+f3) << "\n";
-            timeList.clear();
-            f1 = 0; f2 = 0; f3=0; transAmt =0; dateTime=0;
             custID = transTrav.custID;
-
+            longitude = transTrav.longitude;
+            latitude = transTrav.latitude;
         }
         else {
-            timeList.push_back(transTrav.dateTime);
+            sameCustList.push_back(transTrav);
             longitude = (longitude + transTrav.longitude)/2;
             latitude = (latitude + transTrav.latitude)/2;
             transAmt++;
-            if(transTrav.amt > 500.00) { //amt
-                f2=2;
-            }
-            if(latitude + 50 < transTrav.latitude || latitude -50 > transTrav.latitude) { //lat
-                f3=4;
-            }
-            if(longitude + 50 < transTrav.longitude || longitude -50 > transTrav.longitude) { //long
-                f3=4;
-            }
         }
     }
     
