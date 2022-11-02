@@ -19,6 +19,7 @@
       // Check input errors before inserting in database
       if(empty($email_err) && empty($message_err)){
 
+        // Submits contact request if no errors found in field input
         require_once "ctl/contactuscontroller.php";      
 
       } else { (!empty($result)) ? $email_err = $result : ''; }

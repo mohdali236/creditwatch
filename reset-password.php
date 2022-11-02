@@ -28,8 +28,8 @@
         // Check input errors before updating the database
         if(empty($sec_answer_err) && empty($new_password_err) && empty($confirm_password_err)){
 
-        // Resets password if there are no errors from input
-        require_once "ctl/resetpassword.php";
+            // Resets password if there are no errors from input
+            require_once "ctl/resetpassword.php";
 
         }
         

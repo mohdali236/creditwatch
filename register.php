@@ -26,13 +26,14 @@
         if(empty($username_err) && empty($password_err) && empty($confirm_password_err) 
             && empty($email_err) && empty($sec_question_err) && empty($sec_answer_err)){
             
+            // Registers the user account if no errors found in field input
             require_once "ctl/registeruser.php";
         
         }
         
         // Close database manager connection
         mysqli_close($link);
-        
+
     }
 
 ?>

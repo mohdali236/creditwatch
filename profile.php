@@ -15,6 +15,7 @@
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
      
+        // Updates the profile fields if any are populated with details
         require_once "ctl/updateprofile.php";
 
         // Close database manager connection

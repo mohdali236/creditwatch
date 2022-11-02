@@ -25,6 +25,7 @@
         // Validate credentials
         if(empty($username_err) && empty($password_err)){
 
+            // Verifies password against DB and creates login session
             require_once "ctl/logincontroller.php";
 
         }
