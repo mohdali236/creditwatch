@@ -1,6 +1,6 @@
 <?php
 // Include the database connection file
-include_once("config.php");
+include_once("ctl/dbmanager.php");
 
 if ($link === false) {
         die("ERROR: Could not connect. "

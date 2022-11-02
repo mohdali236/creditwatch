@@ -4,38 +4,10 @@
    session_start();
     
    // Check if the user is logged in, if not then redirect him to login page
-   if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-       header("location: login.php");
-       exit;
-   }
+   require_once "ctl/logincheck.php";
 
-   if(isset($_FILES['csv'])){
-      $result = '';
-      $error = '';
-      $file_name = $_FILES['csv']['name'];
-      $file_size =$_FILES['csv']['size'];
-      $file_tmp =$_FILES['csv']['tmp_name'];
-      $file_type=$_FILES['csv']['type'];
-      $file_ext=strtolower(end(explode('.',$_FILES['csv']['name'])));
-      
-      $extensions= array("csv");
-      
-      if(in_array($file_ext,$extensions)=== false){
-         $error = "File extension not allowed, please select a CSV file.";
-      }
-      
-      if($file_size > 20971520){
-         $error ='File size must be smaller than 20 MB';
-      }
-      
-      if(empty($error)==true){
-         if (move_uploaded_file($file_tmp,"data/".$file_name)){
-            $result = "Success";
-         }else{
-            $error = "Upload failed. Please try again later.";
-         }
-      }
-   }
+   // Upload CSV file controller
+   require_once "ctl/uploadcsvfile.php";
 
 ?>
 

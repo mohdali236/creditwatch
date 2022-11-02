@@ -3,10 +3,8 @@
 session_start();
  
 // Check if the user is logged in, if not then redirect him to login page
-if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-    header("location: login.php");
-    exit;
-}
+require_once "ctl/logincheck.php";
+
 ?>
  
 <!DOCTYPE html>
@@ -117,8 +115,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
       <div class="container">
           <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to</h1>
-          <img src="img/creditwatch_large.png" height="400"><br><br><br><br>
+          <img src="img/creditwatch_large.png" height="275"><br><br><br><br>
           <p>
+              <a href="#" class="btn btn-success">Activate CreditWatch Services</a>
               <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
               <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
           </p>

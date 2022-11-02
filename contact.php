@@ -1,8 +1,7 @@
 <?php
 
-
 // Include config file
-require_once "config.php";
+require_once "ctl/dbmanager.php";
 
 // Define variables and initialize with empty values
 $name = $email = $message = $result = "";
@@ -12,54 +11,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   $name = trim($_POST["name"]);
 
-  // Validate email
-  if(empty(trim($_POST["email"]))){
-        $email_err = $result = "Please enter an email.";
-  } elseif(!filter_var(trim($_POST["email"]), FILTER_VALIDATE_EMAIL)){
-        $email_err = $result = "Invalid email format.";
-  } else{
-        $email = trim($_POST["email"]);
-  }
+  require_once "ctl/validateemail.php";
 
   // Validate message length
-  if(empty(trim($_POST["message"]))){
-      $message_err = $result = "Please enter message.";     
-  } elseif(strlen(trim($_POST["message"])) > 500){
-      $message_err = $result = "Message length too long. 500 character max.";
-  } else{
-      $message = trim($_POST["message"]);
-  }
-
+  require_once "ctl/validatemessage.php";
 
   // Check input errors before inserting in database
   if(empty($email_err) && empty($message_err)){
-      
-      // Prepare an insert statement
-      $sql = "INSERT INTO contactus (name, email, message) VALUES (?, ?, ?)";
-       
-      if($stmt = mysqli_prepare($link, $sql)){
-          // Bind variables to the prepared statement as parameters
-          mysqli_stmt_bind_param($stmt, "sss", $param_name, $param_email, $param_message);
-        
-          // Set parameters
-          $param_name = $name;
-          $param_email = $email;
-          $param_message = $message;
-          
-          // Attempt to execute the prepared statement
-          if(mysqli_stmt_execute($stmt)){
-            $result = "Your message was sent, thank you!";
 
-          } else{
-            $result = "Oops! Something went wrong. Please try again later.";
-          }
+    require_once "ctl/contactuscontroller.php";      
 
-          // Close statement
-          mysqli_stmt_close($stmt);
-      }
-  }
+  } else { (!empty($result)) ? $email_err = $result : ''; }
   
-  // Close connection
+  // Close database manager connection
   mysqli_close($link);
 
 }
