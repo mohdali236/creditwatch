@@ -1,36 +1,38 @@
 <?php
-// Initialize the session
-session_start();
 
-// Check if the user is already logged in, if yes then redirect him to welcome page
-require_once "ctl/logincheckwelcome.php";
- 
-// Include config file
-require_once "ctl/dbmanager.php";
- 
-// Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = $login_err = "";
- 
-// Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 
-    // Check if username is empty
-    require_once "ctl/usernameempty.php";
-    
-    // Check if password is empty
-    require_once "ctl/passwordempty.php";
-    
-    // Validate credentials
-    if(empty($username_err) && empty($password_err)){
+    // Initialize the session
+    session_start();
 
-        require_once "ctl/logincontroller.php";
+    // Check if the user is already logged in, if yes then redirect him to welcome page
+    require_once "ctl/logincheckwelcome.php";
+     
+    // Start the database manger
+    require_once "ctl/dbmanager.php";
+     
+    // Define variables and initialize with empty values
+    $username = $password = "";
+    $username_err = $password_err = $login_err = "";
+     
+    // Processing form data when form is submitted
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+     
+        // Check if username is empty
+        require_once "ctl/usernameempty.php";
+        
+        // Check if password is empty
+        require_once "ctl/passwordempty.php";
+        
+        // Validate credentials
+        if(empty($username_err) && empty($password_err)){
 
+            require_once "ctl/logincontroller.php";
+
+        }
+        
+        // Close database manager connection
+        mysqli_close($link);
     }
-    
-    // Close database manager connection
-    mysqli_close($link);
-}
+
 ?>
  
 <!DOCTYPE html>
@@ -44,22 +46,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link href="css/sidebars.css" rel="stylesheet">
 </head>
 <body>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-      <symbol id="home" viewBox="0 0 16 16">
-        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4H2.5z"/>
-      </symbol>
-      <symbol id="people-circle" viewBox="0 0 16 16">
-        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-      </symbol>
-      <symbol id="person-plus-fill" viewBox="0 0 16 16">
-        <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-        <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
-      </symbol>
-      <symbol id="telephone-fill" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-      </symbol>
-    </svg>
+
+  <!-- load icons for menu from svg paths -->
+  <iframe src="img/svg-loggedout.html" onload="this.insertAdjacentHTML('afterend', (this.contentDocument.body||this.contentDocument).innerHTML);this.remove()"></iframe>
 
     <div class="wrapper d-flex align-items-stretch">
 
