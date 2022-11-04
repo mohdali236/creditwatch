@@ -58,8 +58,8 @@ int main(int argc, char **argv)
     list<Transaction> sameCustList;
     int fraudType;
     ofstream output;
-    output.open("output.csv");
-    output << argv[3] << "\n";
+    //output.open("output.csv");
+    //output << argv[3] << "\n";
     for(const auto& transTrav : transList) {
         if(custID != transTrav.custID) {
             if(custID != -1) {
@@ -75,7 +75,9 @@ int main(int argc, char **argv)
                     } else if(i.longitude / longitude < .5 || i.longitude / longitude > 1.5) {
                         fraudType+=4;
                     }
-                    output << i.custID << ", " << i.transID << ", " << i.dateTime << ", " <<
+                    //output << i.custID << ", " << i.transID << ", " << i.dateTime << ", " <<
+                    //to_string((bool)(fraudType!=0)) << ", " << to_string(fraudType) << "\n";
+                    cout << i.custID << ", " << i.transID << ", " << i.dateTime << ", " <<
                     to_string((bool)(fraudType!=0)) << ", " << to_string(fraudType) << "\n";
                     fraudType = 0;
                 }
@@ -94,5 +96,5 @@ int main(int argc, char **argv)
             transAmt++;
         }
     }
-    
+    cout << "done";
 }
