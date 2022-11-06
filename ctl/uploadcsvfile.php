@@ -22,7 +22,7 @@
       }
       
       if(empty($error)==true){
-         if (move_uploaded_file($file_tmp,"data/".$file_name)){
+         if (move_uploaded_file($file_tmp,"data/transactions.csv")){
             $result = "Success";
          }else{
             $error = "Upload failed. Please try again later.";

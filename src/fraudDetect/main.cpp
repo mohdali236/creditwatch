@@ -79,8 +79,8 @@ int main(int argc, char **argv)
                 fraudType += 4;
             }
 
-            cout << argv[2] << "," << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
-                 to_string((bool) (fraudType != 0)) << "," << to_string(fraudType) << "\n";
+            cout << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
+                 to_string((bool) (fraudType != 0)) << "," << to_string(fraudType) << ",";
 
             if (fraudType == 0) {
                 dateTime = transTrav.dateTime;
@@ -92,5 +92,5 @@ int main(int argc, char **argv)
             fraudType = 0;
         }
     }
-    cout << "done";
+    cout << "eof";
 }

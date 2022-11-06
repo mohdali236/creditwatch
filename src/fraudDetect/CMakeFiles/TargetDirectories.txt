@@ -1,0 +1,3 @@
+/var/www/remoteto.us/html/fraudDetect/src/CMakeFiles/fraudDetect23.dir
+/var/www/remoteto.us/html/fraudDetect/src/CMakeFiles/edit_cache.dir
+/var/www/remoteto.us/html/fraudDetect/src/CMakeFiles/rebuild_cache.dir
