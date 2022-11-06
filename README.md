@@ -18,6 +18,6 @@ welcome.php: Post-login redirect page. Might end up redirecting directly to dash
 upload-data.php: Upload page that puts files in the data folder. File type (CSV only) and size (>20MB) are checked.<br /><br />
 
 src/fraudDetect - C++ binary application for processing transaction data for fraud<br />
-To build fraudDetect:<br />
-    make src/fraudDetect<br />
-    make --build src/fraudDetect
+&nbsp;&nbsp;To build fraudDetect<br />
+&nbsp;&nbsp;&nbsp;&nbsp;make fraudDetect/src<br />
+&nbsp;&nbsp;&nbsp;&nbsp;make --build fraudDetect/src
