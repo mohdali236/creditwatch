@@ -16,7 +16,7 @@ reset-password.php: Updates password in "users" table in MySQL DB. Checks login 
 welcome.php: Post-login redirect page. Might end up redirecting directly to dashboard?<br />
 upload-data.php: Upload page that puts files in the data folder. File type (CSV only) and size (>20MB) are checked.<br /><br />
 
-src/fraudDetect - C++ binary application for processing transaction data for fraud<br />
+fraudDetect/src - C++ binary application for processing transaction data for fraud<br />
 &nbsp;&nbsp;To build fraudDetect<br />
 &nbsp;&nbsp;&nbsp;&nbsp;make fraudDetect/src<br />
 &nbsp;&nbsp;&nbsp;&nbsp;make --build fraudDetect/src
