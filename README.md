@@ -2,7 +2,6 @@
  <br />
 Files: <br />
  <br />
-config.php: Used to connect to the MySQL database <br />
 contact.php: Contact Us page with form that submits to "contactus" table in MySQL DB <br />
 dashboard.php: Dashboard page with menu and fraud detail cards. Checks login. <br />
 fetch.php: Test page for fetching data from the MySQL DB <br />
