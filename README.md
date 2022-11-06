@@ -15,9 +15,9 @@ profile.php: Customer can update profile details; updates "contact" table in MyS
 register.php: Registration inserts new records into "users" and "contact" table for user creation. Password is hashed. <br />
 reset-password.php: Updates password in "users" table in MySQL DB. Checks login and security question. <br />
 welcome.php: Post-login redirect page. Might end up redirecting directly to dashboard?<br />
-upload-data.php: Upload page that puts files in the data folder. File type (CSV only) and size (>20MB) are checked.
+upload-data.php: Upload page that puts files in the data folder. File type (CSV only) and size (>20MB) are checked.<br /><br />
 
-src/fraudDetect - C++ binary application for processing transaction data for fraud
-To build fraudDetect:
-    make src/fraudDetect
+src/fraudDetect - C++ binary application for processing transaction data for fraud<br />
+To build fraudDetect:<br />
+    make src/fraudDetect<br />
     make --build src/fraudDetect
