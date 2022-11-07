@@ -8,5 +8,6 @@
 	$fraudDetect = shell_exec("./fraudDetect transactions.csv");
 	echo $fraudDetect;
 
+	unlink($target);
 
 ?>

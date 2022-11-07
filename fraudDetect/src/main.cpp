@@ -11,6 +11,7 @@
 
 using namespace std;
 
+// Struct for CSV data
 struct Transaction {
 public:
     Transaction(int cust, int trans, int date, double a, double lon, double lat) {
@@ -29,6 +30,7 @@ public:
 
 int main(int argc, char **argv)
 {
+    // Initializing variables
     string filename = argv[1];
     string line;
     ifstream file1 (filename);
@@ -36,6 +38,7 @@ int main(int argc, char **argv)
     int custID, transID,dateTime;
     double amt, longitude, latitude;
 
+    // Open file and read CSV values and insert into struct list
     if (file1.is_open()) {
         while(getline(file1, line)) { //create sorted list of entries
             istringstream s(line);
@@ -63,25 +66,35 @@ int main(int argc, char **argv)
     dateTime = 0;
     int fraudType = 0;
     transID = -1;
-    list<Transaction> sameCustList;
+
+    // Loop through parsed CSV list
     for(const auto& transTrav : transList) {
         if(transID != transTrav.transID) {
 
-            if (transTrav.amt >= 200) {
+            // Add , for csv list at end of each non first line
+            if (transID != -1)
+                cout << ",";
+
+            // Check for fraud based on transaction amount
+            if (transTrav.amt >= 200)
                 fraudType += 2;
-            }
-            if (transTrav.dateTime - dateTime < 20) {
+
+            // Check for fraud based on datetime delta from last transaction
+            if (transTrav.dateTime - dateTime < 20)
                 fraudType += 1;
-            }
+
+            // Check for fraud based on geolocation delta from last transaction
             if (transTrav.latitude / latitude < .5 || transTrav.latitude / latitude > 1.5) {
                 fraudType += 4;
             } else if (transTrav.longitude / longitude < .5 || transTrav.longitude / longitude > 1.5) {
                 fraudType += 4;
             }
 
-            cout << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
-                 to_string((bool) (fraudType != 0)) << "," << to_string(fraudType) << ",";
+            // Send results to std out
+            cout << argv[2] << "," << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
+                 to_string((bool) (fraudType != 0)) << "," << to_string(fraudType);
 
+            // Updates values for next check if fraud was not found
             if (fraudType == 0) {
                 dateTime = transTrav.dateTime;
                 longitude = (longitude + transTrav.longitude)/2;
@@ -92,5 +105,4 @@ int main(int argc, char **argv)
             fraudType = 0;
         }
     }
-    cout << "eof";
 }
