@@ -1,3 +1,3 @@
 #!/bin/sh
 
-curl https://remoteto.us/fraudDetect/exec-fraud.php --silent
+curl https://remoteto.us/fraudDetect/process-fraud.php --silent
