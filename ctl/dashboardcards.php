@@ -20,7 +20,7 @@
     $totaltx = mysqli_fetch_assoc($result);
     $totaltransactions = $totaltx['total'];
 
-    
+    // Check to ensure no dividing by 0 errors occur
     if($totalfraud != 0 && $totaltransactions != 0 ){
 	    // Total percent fraud for user
 	    $percentfraud = ($totalfraud / $totaltransactions) * 100;
