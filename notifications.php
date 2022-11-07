@@ -16,6 +16,7 @@
 
     <meta charset="UTF-8">
     <title>CreditWatch - Notifications</title>
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
 </head>
@@ -28,7 +29,7 @@
 
       <nav class="sidebar">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height: 100vh;">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <a href="/creditwatch" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
           </a>
           <hr>
@@ -88,7 +89,48 @@
       </nav>
 
       <div class="container">
-              <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. This is your notifications dashboard.</h1>
+              <h2 class="my-5">Notifications Dashboard</h2>
+
+                <div class="row">
+
+                  <div class="col-xl-8 col-lg-8">
+                      <div class="card shadow mb-4">
+                          <div class="card-body">
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
+                              Notification 1
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-8 col-lg-8">
+                      <div class="card shadow mb-4">
+                          <div class="card-body">
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
+                              Notification 2
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-8 col-lg-8">
+                      <div class="card shadow mb-4">
+                          <div class="card-body">
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
+                              Notification 3
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="col-xl-8 col-lg-8">
+                      <div class="card shadow mb-4">
+                          <div class="card-body">
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
+                              Notification 4
+                          </div>
+                      </div>
+                  </div>
+
+                </div>
+
       </div>
 
     </div>

@@ -37,7 +37,7 @@
 
       <nav class="sidebar">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height: 100vh;">
-          <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+          <a href="/creditwatch" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
             <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
           </a>
           <hr>
@@ -102,7 +102,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0">Fraud Details</h1>
+                    <h1 class="h2 mb-0">Fraud Details</h1>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 

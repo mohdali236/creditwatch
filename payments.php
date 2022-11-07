@@ -28,7 +28,7 @@
 
       <nav class="sidebar">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height: 100vh;">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <a href="/creditwatch" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
               <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
             </a>
             <hr>
@@ -88,7 +88,7 @@
       </nav>
 
       <div class="container rounded bg-white">
-        <div class="col-md-8 py-5 text-center">
+        <div class="col-md-8 py-5">
             <h2>Payments Portal</h2>
         </div>
         <div class="row">
@@ -159,7 +159,7 @@
                         </div>
                     </div>
                     <hr class="mb-4">
-                    <h4 class="mb-3">Payment</h4>
+                    <h4 class="mb-3">Credit card details</h4>
                     <div class="row">
                         <div class="col-md-6 mb-3">
                             <label for="cc-name">Name on card</label>
