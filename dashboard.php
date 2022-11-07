@@ -6,6 +6,12 @@
     // Check if the user is logged in, if not then redirect him to login page
     require_once "ctl/logincheck.php";
 
+    // Start the database manger
+    require_once "ctl/dbmanager.php";
+
+    // Query dashboard card data for display on page
+    require_once "ctl/dashboardcards.php";
+   
 ?>
  
 <!DOCTYPE html>
@@ -107,7 +113,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             Total Fraud</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">12</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totalfraud; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -122,7 +128,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Monthly Fraud</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $monthlyfraud; ?></div>
                                     </div>
                                 </div>
                             </div>
@@ -139,7 +145,7 @@
                                         </div>
                                         <div class="row no-gutters align-items-center">
                                             <div class="col-auto">
-                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">20%</div>
+                                                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $percentfraudint; ?>%</div>
                                             </div>
                                             <div class="col">
                                                 <div class="progress progress-sm mr-2">
@@ -163,7 +169,7 @@
                                     <div class="col mr-2">
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                             Transactions Checked</div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800">240</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $totaltransactions; ?></div>
                                     </div>
                                 </div>
                             </div>

@@ -13,19 +13,28 @@
       
       $extensions= array("csv");
       
+      // Verifies file is a CSV
       if(in_array($file_ext,$extensions)=== false){
          $error = "File extension not allowed, please select a CSV file.";
       }
       
+      // Verfies file is less than 20MB
       if($file_size > 20971520){
          $error ='File size must be smaller than 20 MB';
       }
       
       if(empty($error)==true){
          if (move_uploaded_file($file_tmp,"data/transactions.csv")){
-            $result = "Success";
+                        
+            // Process transactions CSV file with fraudDetect
+            require_once "data/exec-fraud.php";
+
+            $result = "Transactions processed succesfully.";
+         
          }else{
+            
             $error = "Upload failed. Please try again later.";
+         
          }
       }
    }

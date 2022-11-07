@@ -114,13 +114,11 @@
 
             <div class="row">
                 <div class="col-md-6 border-right">
-                    <div class="col-md-8 py-5 text-center">
-                        <h2>Payments Portal</h2>
-                    </div>
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
+                        <hr>
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="row mt-2">
                                 <div class="col-md-6 form-group">

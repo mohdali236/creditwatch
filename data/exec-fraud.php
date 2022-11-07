@@ -1,16 +1,16 @@
 <?php
 
     // Initialize the session
-    session_start();
+    //session_start();
      
     // Check if the user is logged in, otherwise redirect to login page
-    require_once "../ctl/logincheck.php";
+    //require_once "../ctl/logincheck.php";
 
 	// Start the database manger
-    require_once "../ctl/dbmanager.php";
+    require_once "ctl/dbmanager.php";
 
 	// Run fraudDetect script on remote server
-	$fraudDetect = shell_exec("./fraudDetect.sh");
+	$fraudDetect = shell_exec("data/fraudDetect.sh");
 	
 	//echo $fraudDetect;
 
@@ -42,12 +42,12 @@
          // Set parameters
         $param_uid = $usersid;
         $param_cid = $row[0];
-        $param_tid = $row[1];
+        $param_tid = $row[1];  // this is the primary key for frauddata DB table, thus no duplicates will be inserted
         $param_time = $row[2];
         $param_isfraud = $row[3];
         $param_fraudtype = $row[4];
 
-        // Attempt to execute the prepared statement
+        // Execute the prepared statement
         mysqli_stmt_execute($stmt);
 
         /*if(mysqli_stmt_execute($stmt)){

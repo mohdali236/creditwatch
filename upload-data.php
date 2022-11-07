@@ -6,8 +6,8 @@
     // Check if the user is logged in, if not then redirect him to login page
     require_once "ctl/logincheck.php";
 
-    // Upload CSV file controller
-    require_once "ctl/uploadcsvfile.php";
+    // Controller for upload and fraudDetect on CSV file
+    require_once "ctl/uploadandprocess.php";
 
 ?>
 
@@ -94,6 +94,14 @@
       </nav>
 
       <div class="container rounded bg-white mt-5 mb-5">
+
+        <h2> Upload Transaction Data</h2>
+
+        <br>
+        Here is a sample data file for upload testing: <a href="https://www.ohmydar.win/creditwatch/data/sampledata.csv"> Sample CSV File </a><br>
+        Upload accepts only CSV files that are less than 20MB.<br>
+        CSV File Columns: [customer_account_number, transaction_number, epoch_timedate, geo_longitude, geo_latitude]<br><br><hr><br>
+
         <form action="" method="POST" enctype="multipart/form-data">
           <input type="file" name="csv" />
           <input type="submit"/>
