@@ -22,9 +22,11 @@
 
     <meta charset="UTF-8">
     <title>CreditWatch - Fraud Dashboard</title>
+    <link href="css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
     <link href="css/dashboard.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -94,13 +96,14 @@
         </div>
       </nav>
 
-        <div class="container-fluid">
-          <div class="col-md-4">
+        <div class="container rounded bg-white mt-5 mb-5">
+          <div class="col-md">
             <div class="pt-5">
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Fraud Details</h1>
+                    <h1 class="h3 mb-0">Fraud Details</h1>
+                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 
                 <div class="row">
@@ -150,7 +153,7 @@
                                             <div class="col">
                                                 <div class="progress progress-sm mr-2">
                                                     <div class="progress-bar bg-info" role="progressbar"
-                                                        style="width: 20%" aria-valuenow="20" aria-valuemin="0"
+                                                        style="width: <?php echo $percentfraudint; ?>%" aria-valuenow="<?php echo $percentfraudint; ?>" aria-valuemin="0"
                                                         aria-valuemax="100"></div>
                                                 </div>
                                             </div>
@@ -178,16 +181,70 @@
 
                 </div>
 
+
+                <div class="row">
+
+                        <!-- Bar Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Fraud Overview</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myBarChart" width="667" height="320" style="display: block; width: 667px; height: 320px;" class="chartjs-render-monitor"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Fraud Sources</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                        <canvas id="myPieChart" width="301" height="245" style="display: block; width: 301px; height: 245px;" class="chartjs-render-monitor"></canvas>
+                                    </div>
+                                    <div class="mt-4 text-center small">
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-primary"></i> Amount
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-success"></i> Date/Time
+                                        </span>
+                                        <span class="mr-2">
+                                            <i class="fas fa-circle text-info"></i> Location
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
               </div>
             </div>
           </div>
 
       </div>
 
-
-
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/sidebars.js"></script>
+
+    <script src="js/chart.js"></script>
+    <script src="js/chart-area.js"></script>
+    <script src="js/chart-bar.js"></script>
+    <script src="js/chart-pie.js"></script>
+
+    <script src="js/sbadmin2.js"></script>
+    
+    <script src="js/jquery-easing.js"></script>
+    <script src="js/jquery-min.js"></script>
 
 </body>
 </html>
