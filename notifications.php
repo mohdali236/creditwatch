@@ -96,8 +96,8 @@
                   <div class="col-xl-8 col-lg-8">
                       <div class="card shadow mb-4">
                           <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
-                              Notification 1
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
+                              &nbsp;Notification 1
                           </div>
                       </div>
                   </div>
@@ -105,8 +105,8 @@
                   <div class="col-xl-8 col-lg-8">
                       <div class="card shadow mb-4">
                           <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
-                              Notification 2
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
+                              &nbsp;Notification 2
                           </div>
                       </div>
                   </div>
@@ -114,8 +114,8 @@
                   <div class="col-xl-8 col-lg-8">
                       <div class="card shadow mb-4">
                           <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
-                              Notification 3
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
+                              &nbsp;Notification 3
                           </div>
                       </div>
                   </div>
@@ -123,8 +123,8 @@
                   <div class="col-xl-8 col-lg-8">
                       <div class="card shadow mb-4">
                           <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i>&nbsp;</a>
-                              Notification 4
+                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
+                              &nbsp;Notification 4
                           </div>
                       </div>
                   </div>

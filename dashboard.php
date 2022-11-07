@@ -102,7 +102,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h2 mb-0">Fraud Details</h1>
+                    <h2 class="mb-0">Fraud Dashboard</h2>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 
@@ -215,10 +215,10 @@
                                             <i class="fas fa-circle text-primary"></i> Amount
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Date/Time
+                                            <i class="fas fa-circle text-success"></i> Date or Time
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Location
+                                            <i class="fas fa-circle text-info"></i> Geolocation
                                         </span>
                                     </div>
                                 </div>
@@ -237,7 +237,6 @@
     <script src="js/sidebars.js"></script>
 
     <script src="js/chart.js"></script>
-    <script src="js/chart-area.js"></script>
     <script src="js/chart-bar.js"></script>
     <script src="js/chart-pie.js"></script>
 

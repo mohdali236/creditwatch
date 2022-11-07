@@ -121,11 +121,11 @@
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="row mt-2">
                                 <div class="col-md-6 form-group">
-                                    <label class="labels">Name</label>
+                                    <label class="labels">First Name</label>
                                     <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label class="labels">Surname</label>
+                                    <label class="labels">Last Name</label>
                                     <input type="text" name="surname" class="form-control" value="<?php echo $surname; ?>">
                                 </div>
                             </div>
@@ -136,31 +136,31 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Address Line 1</label>
-                                    <input type="text" name="address1" class="form-control" value="<?php echo $address1; ?>">
+                                    <input type="text" name="address1" class="form-control" value="<?php echo $address1; ?>" placeholder="1234 Main St">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Address Line 2</label>
-                                    <input type="text" name="address2" class="form-control" value="<?php echo $address2; ?>">
+                                    <input type="text" name="address2" class="form-control" value="<?php echo $address2; ?>" placeholder="Apartment or suite">
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="labels">Postcode</label>
+                                <div class="col-md-3 form-group">
+                                    <label class="labels">City</label>
+                                    <input type="text" name="city" class="form-control" value="<?php echo $city; ?>" placeholder="Richardson">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="labels">State</label>
+                                    <input type="text" name="state" class="form-control" value="<?php echo $state; ?>" placeholder="Texas">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label class="labels">Zip</label>
                                     <input type="number" name="zipcode" class="form-control" value="<?php echo $zipcode; ?>">
                                 </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="labels">City</label>
-                                    <input type="text" name="city" class="form-control" value="<?php echo $city; ?>">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label class="labels">State</label>
-                                    <input type="text" name="state" class="form-control" value="<?php echo $state; ?>">
-                                </div>
-                                <div class="col-md-12 form-group">
+                                <div class="col-md-3 form-group">
                                     <label class="labels">Country</label>
-                                    <input type="text" name="country" class="form-control" value="<?php echo $country; ?>">
+                                    <input type="text" name="country" class="form-control" value="<?php echo $country; ?>" placeholder="USA">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Email</label>
-                                    <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
+                                    <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="you@example.com">
                                 </div>
                             </div>
                             <hr class="mb-4">

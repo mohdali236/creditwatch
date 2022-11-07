@@ -100,7 +100,7 @@
                         <span>Total (USD):</span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong class="text-success">$20</strong>
+                        <strong class="text-success">$120</strong>
                     </div>
                 </div>
                 <div class="row">
@@ -108,7 +108,7 @@
                         <span>Due date:</span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong>November 12, 2022</strong>
+                        <strong>December 7, 2022</strong>
                     </div>
                 </div>
                 <hr class="mb-4">
@@ -142,12 +142,12 @@
                         <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                     </div>
                     <div class="row">
-                        <div class="col-md-5 mb-3">
-                            <label for="country">Country</label>
-                            <input type="text" class="form-control" id="country" placeholder="USA">
-                            <div class="invalid-feedback"> Please enter a valid country. </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="country">City</label>
+                            <input type="text" class="form-control" id="city" placeholder="Richardson">
+                            <div class="invalid-feedback"> Please enter a valid city. </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <label for="state">State</label>
                             <input type="text" class="form-control" id="state" placeholder="Texas">
                             <div class="invalid-feedback"> Please provide a valid state. </div>
@@ -157,6 +157,11 @@
                             <input type="text" class="form-control" id="zip" placeholder="" required="">
                             <div class="invalid-feedback"> Zip code required. </div>
                         </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="country">Country</label>
+                            <input type="text" class="form-control" id="country" placeholder="USA">
+                            <div class="invalid-feedback"> Please enter a valid country. </div>
+                        </div>                        
                     </div>
                     <hr class="mb-4">
                     <h4 class="mb-3">Credit card details</h4>

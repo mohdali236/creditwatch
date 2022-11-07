@@ -135,7 +135,7 @@
                         <label><?php echo $sec_question; echo (strpos($sec_question, '?') !== false) ? '' : '?'; ?></label>
                         <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
                         <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
-                    </div>
+                    </div><hr>
                     <div class="form-group">
                         <input type="submit" class="btn btn-primary" value="Submit">
                         <a class="btn btn-link ml-2" href="welcome.php">Cancel</a>
