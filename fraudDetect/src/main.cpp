@@ -91,7 +91,7 @@ int main(int argc, char **argv)
             }
 
             // Send results to std out
-            cout << "," << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
+            cout << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
                  to_string((bool) (fraudType != 0)) << "," << to_string(fraudType);
 
             // Updates values for next check if fraud was not found
