@@ -65,44 +65,60 @@ int main(int argc, char **argv)
 
     dateTime = 0;
     int fraudType = 0;
-    transID = -1;
+    int transCount = 0;
+    double pastAmt = -1.00;
+    int pastAmtEqual = 0;
+    custID = -1;
 
-    // Loop through parsed CSV list
+    /*
+    */
     for(const auto& transTrav : transList) {
-        if(transID != transTrav.transID) {
-
-            // Add , for csv list at end of each non first line
-            if (transID != -1)
-                cout << ",";
-
-            // Check for fraud based on transaction amount
-            if (transTrav.amt >= 200)
-                fraudType += 2;
-
-            // Check for fraud based on datetime delta from last transaction
-            if (transTrav.dateTime - dateTime < 20)
-                fraudType += 1;
-
-            // Check for fraud based on geolocation delta from last transaction
-            if (transTrav.latitude / latitude < .5 || transTrav.latitude / latitude > 1.5) {
-                fraudType += 4;
-            } else if (transTrav.longitude / longitude < .5 || transTrav.longitude / longitude > 1.5) {
-                fraudType += 4;
-            }
-
-            // Send results to std out
-            cout << "," << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
-                 to_string((bool) (fraudType != 0)) << "," << to_string(fraudType);
-
-            // Updates values for next check if fraud was not found
-            if (fraudType == 0) {
-                dateTime = transTrav.dateTime;
-                longitude = (longitude + transTrav.longitude)/2;
-                latitude = (latitude + transTrav.latitude)/2;
-            }
-
-            transID = transTrav.transID;
-            fraudType = 0;
+        if(custID != transTrav.custID) {
+            custID = transTrav.custID;
+            longitude = 0;
+            latitude = 0;
+            pastAmt = -1;
+            pastAmtEqual = 0;
+            dateTime = 0;
         }
+        // Add , for csv list at end of each non first line
+        if (custID != -1)
+            cout << ",";
+
+        // Check for fraud based on transaction amount
+        if (transTrav.amt >= 200)
+            fraudType += 2;
+        //Check for previous repeats
+        else if(transTrav.amt == pastAmt) {
+            pastAmtEqual++;
+            if(pastAmtEqual >= 3) {
+                fraudType+=2;
+            }
+        }
+
+        // Check for fraud based on datetime delta from last transaction
+        if (transTrav.dateTime - dateTime < 20)
+            fraudType += 1;
+
+        // Check for fraud based on geolocation delta from last transaction
+        if (transTrav.latitude / (latitude/((double)transCount)) < .5 || transTrav.latitude / (latitude/((double)transCount)) > 1.5) {
+            fraudType += 4;
+        } else if (transTrav.longitude / (longitude/((double)transCount)) < .5 || transTrav.longitude / (longitude/((double)transCount)) > 1.5) {
+            fraudType += 4;
+        }
+
+        // Send results to std out
+        cout << "," << transTrav.custID << "," << transTrav.transID << "," << transTrav.dateTime << "," <<
+                to_string((bool) (fraudType != 0)) << "," << to_string(fraudType);
+
+        // Updates values for next check if fraud was not found
+        if (fraudType == 0) {
+            dateTime = transTrav.dateTime;
+            transCount++;
+            pastAmt = transTrav.amt;
+            longitude = (longitude + transTrav.longitude); //is total of all long, divide by transAmt to find avg
+            latitude = (latitude + transTrav.latitude); //total of all lat, divide by transAmt to find avg
+        }
+        fraudType = 0;  
     }
 }
