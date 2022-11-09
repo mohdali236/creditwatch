@@ -2,6 +2,7 @@
 Chart.defaults.global.defaultFontFamily = 'Nunito', '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#858796';
 
+// JS function for US number format 2,145 but in our cases decimals will not be used for fraud data
 function number_format(number, decimals, dec_point, thousands_sep) {
   // *     example: number_format(1234.56, 2, ',', ' ');
   // *     return: '1 234,56'
@@ -27,18 +28,20 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
+// Bar chart uses query data from PHP; chart.js rocks!
 var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["June", "July", "August", "September", "October", "November"],
+    labels: [prev11monthname, prev10monthname, prev9monthname, prev8monthname, prev7monthname, prev6monthname, 
+             prev5monthname, prev4monthname, prev3monthname, prev2monthname, prev1monthname, currmonthname],
     datasets: [{
       label: "Fraud",
       backgroundColor: "#4e73df",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
-      data: [32, 8, 15, 20, 49, 2],
+      data: [prev11monthval, prev10monthval, prev9monthval, prev8monthval, prev7monthval, prev6monthval, 
+             prev5monthval, prev4monthval, prev3monthval, prev2monthval, prev1monthval, currmonthval],
     }],
   },
   options: {
@@ -61,15 +64,15 @@ var myBarChart = new Chart(ctx, {
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
+          maxTicksLimit: 12
         },
         maxBarThickness: 25,
       }],
       yAxes: [{
         ticks: {
           min: 0,
-          max: 50,
-          maxTicksLimit: 5,
+          max: 10,
+          maxTicksLimit: 7,
           padding: 10
         },
         gridLines: {

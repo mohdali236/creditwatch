@@ -91,8 +91,12 @@
       </nav>
 
       <div class="container">
-        <h2>Sign Up</h2>
-        <p>Please fill this form to create an account.</p>
+
+        <div class="col-md-8 py-5">
+            <h2>Sign Up</h2>
+            <p>Please fill this form to create an account.</p>
+        </div>
+
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
           <div class="col-md-4">
             <div class="form-group">
@@ -124,14 +128,16 @@
                 <label>Security Question Answer</label>
                 <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
                 <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
-            </div>        
-            <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="reset" class="btn btn-secondary ml-2" value="Reset">
+            </div><hr>
+            <div class="form-group d-sm-flex align-items-center justify-content-between">
+                <div class="mb-0">Already have an account? <a href="login.php">Login here</a>.</div>
+                <input type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm" value="Submit">
+                <input type="reset" class="d-none d-sm-inline-block btn btn-secondary ml-2 shadow-sm" value="Reset">
             </div>
-            <p>Already have an account? <a href="login.php">Login here</a>.</p>
+            
           </div>
         </form>
+
       </div>
         
     </div>

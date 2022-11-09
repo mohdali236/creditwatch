@@ -85,7 +85,7 @@
       </nav>
 
       <div class="container">
-        <div class="row">
+        <div class="row py-5">
           <div class="col-md-5 mr-auto">
             <h2>Contact Us</h2>
             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quaerat autem corrupti asperiores accusantium et fuga! Facere excepturi, quo eos, nobis doloremque dolor labore expedita illum iusto, aut repellat fuga!</p>

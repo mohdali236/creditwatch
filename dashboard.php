@@ -9,8 +9,14 @@
     // Start the database manger
     require_once "ctl/dbmanager.php";
 
-    // Query dashboard card data for display on page
+    // Queries dashboard card data for display on page
     require_once "ctl/dashboardcards.php";
+
+    // Queries dashboard pie chart data for display on page
+    require_once "ctl/dashboardpie.php";
+
+    // Queries dashboard pie chart data for display on page
+    require_once "ctl/dashboardbar.php";
    
 ?>
  
@@ -102,7 +108,7 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h2 class="mb-0">Fraud Dashboard</h2>
+                    <h2 class="mb-0 text-black">Fraud Dashboard</h2>
                     <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 
