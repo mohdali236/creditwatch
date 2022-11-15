@@ -23,7 +23,6 @@
     <meta charset="UTF-8">
     <title>CreditWatch - Fraud Event Drilldown</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/sidebars.css" rel="stylesheet">
 
 </head>
 <body>
@@ -96,7 +95,5 @@
 </div>
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebars.js"></script>
-
 </body>
 </html>

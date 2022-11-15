@@ -73,7 +73,7 @@
 
                 <div class="mb-md-5 mt-md-4 pb-5">
 
-                  <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
+                  <img class="bi pe-none me-2" width="240" height="109" src="img/creditwatch_large.png">
                   <p class="mb-5"><br>Please enter your login and password!</p>
 
                   <?php 
