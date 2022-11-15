@@ -137,7 +137,7 @@
                         <span>Due date:</span>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <strong><?php echo date('F j, Y, g:i a',$finaldatedue) ?></strong>
+                        <strong><?php echo $finaldatedue; ?></strong>
                     </div>
                 </div>
                 <hr class="mb-4">
@@ -202,12 +202,12 @@
                             <div class="invalid-feedback"> Credit card number is required </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="ccm-exp">Expiration Month</label>
+                            <label for="ccm-exp">Exp. Month</label>
                             <input type="text" name="cc_month" class="form-control" maxlength="2" required>
                             <div class="invalid-feedback"> Expiration month required </div>
                         </div>
                         <div class="col-md-2 mb-3">
-                            <label for="ccy-exp">Expiration Year</label>
+                            <label for="ccy-exp">Exp. Year</label>
                             <input type="text" name="cc_year" class="form-control" maxlength="2" required>
                             <div class="invalid-feedback"> Expiration year required </div>
                         </div>

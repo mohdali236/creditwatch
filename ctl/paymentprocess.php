@@ -69,8 +69,9 @@
 
                 // Attempt to execute the prepared statement
                 if(mysqli_stmt_execute($stmt)){
-                    // Update payment amount due for display
+                    // Update payment amount due and due date for display
                     $totaldue = 0;
+                    $finaldatedue = 'None';
                     
                     // response if payment is successful
                     $result = "Payment was successful!";
