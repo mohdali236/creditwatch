@@ -92,9 +92,9 @@
               <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong>
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item active" href="dashboard.php">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="reset-password.php">Change Password</a></li>
+              <li><a class="dropdown-item" href="contact.php">Customer Support</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
             </ul>
@@ -109,7 +109,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h2 class="mb-0 text-black">Fraud Dashboard</h2>
-                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
+                    <a href="eventdrilldown.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 
                 <div class="row">

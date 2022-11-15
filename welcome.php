@@ -77,9 +77,9 @@
               <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong>
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="reset-password.php">Change Password</a></li>
+              <li><a class="dropdown-item" href="contact.php">Customer Support</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
             </ul>
@@ -91,7 +91,7 @@
           <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to</h1>
           <img src="img/creditwatch_large.png" height="275"><br><br><br><br>
           <p>
-              <a href="#" class="btn btn-success">Activate CreditWatch Services</a>
+              <a href="activate.php" class="btn btn-success">Activate CreditWatch Services</a>
               <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
               <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
           </p>

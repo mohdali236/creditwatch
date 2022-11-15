@@ -83,9 +83,9 @@
               <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong>
             </a>
             <ul class="dropdown-menu text-small shadow">
-              <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
               <li><a class="dropdown-item" href="profile.php">Profile</a></li>
               <li><a class="dropdown-item" href="reset-password.php">Change Password</a></li>
+              <li><a class="dropdown-item" href="contact.php">Customer Support</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
             </ul>
@@ -94,28 +94,31 @@
       </nav>
 
       <div class="container rounded bg-white mt-5 mb-5">
+        <div class="col-md-9">
 
-        <h2> Upload Transaction Data</h2>
+          <h2>Upload Transaction Data</h2><br>
 
-        <br>
-        Here is a sample data file for upload testing: <a href="https://www.ohmydar.win/creditwatch/data/sampledata.csv"> Sample CSV File </a><br>
-        Upload accepts only CSV files that are less than 20MB.<br>
-        CSV File Columns: [customer_account_number, transaction_number, epoch_timedate, geo_longitude, geo_latitude]<br><br><hr><br>
+          Here is a sample data file for upload testing: <a href="https://www.ohmydar.win/creditwatch/data/sampledata.csv"> Sample CSV File </a><br>
+          CSV File Columns: [customer_account_number, transaction_number, epoch_timedate, geo_longitude, geo_latitude]<br>
+          Upload accepts only CSV files that are less than 20MB.<br><br>
 
-        <form action="" method="POST" enctype="multipart/form-data">
-          <input type="file" name="csv" />
-          <input type="submit"/>
-          <br><br>
-          <ul>
-             <li>Sent file: <?php echo $_FILES['csv']['name'];  ?>
-             <li>File size: <?php echo $_FILES['csv']['size'], " bytes";  ?>
-             <li>File type: <?php echo $_FILES['csv']['type'] ?>
-          </ul>
-          <br>
-          <?php echo $error; echo $result; ?>
-        </form>
+          <hr><br>
+
+          <form action="" method="POST" enctype="multipart/form-data">
+            <input type="file" name="csv" />
+            <input type="submit"/>
+            <br><br>
+            <ul>
+               <li>Sent file: <?php echo $_FILES['csv']['name'];  ?>
+               <li>File size: <?php echo $_FILES['csv']['size'], " bytes";  ?>
+               <li>File type: <?php echo $_FILES['csv']['type'] ?>
+            </ul>
+            <br>
+            <?php echo $error; echo $result; ?>
+          </form>
+        </div>
+
       </div>
-    
     </div>
       
     <script src="js/bootstrap.bundle.min.js"></script>

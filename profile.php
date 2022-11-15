@@ -94,9 +94,9 @@
                 <strong><?php echo htmlspecialchars($_SESSION["username"]); ?></strong>
               </a>
               <ul class="dropdown-menu text-small shadow">
-                <li><a class="dropdown-item" href="dashboard.php">Dashboard</a></li>
-                <li><a class="dropdown-item active" href="profile.php">Profile</a></li>
-                <li><a class="dropdown-item" href="reset-password.php">Change Password</a></li>
+              <li><a class="dropdown-item active" href="profile.php">Profile</a></li>
+              <li><a class="dropdown-item" href="reset-password.php">Change Password</a></li>
+              <li><a class="dropdown-item" href="contact.php">Customer Support</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" href="logout.php">Sign out</a></li>
               </ul>

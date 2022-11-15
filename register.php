@@ -46,103 +46,92 @@
     <meta charset="UTF-8">
     <title>Sign Up for CreditWatch</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/sidebars.css" rel="stylesheet">
+
+    <!-- CSS style for login/reg page background -->
+    <style type="text/css">
+        
+        .gradient-custom {
+        /* fallback for old browsers */
+        background: #eb0d15;
+
+        /* Chrome 10-25, Safari 5.1-6 */
+        background: -webkit-linear-gradient(to right, rgba(235, 13, 21, 1), rgba(248, 249, 250, 1));
+
+        /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background: linear-gradient(to right, rgba(235, 13, 21, 1), rgba(248, 249, 250, 1))
+        }
+    </style>
+
 </head>
 <body>
 
-  <!-- load icons for menu from svg paths -->
-  <iframe src="img/svg-loggedout.html" onload="this.insertAdjacentHTML('afterend', (this.contentDocument.body||this.contentDocument).innerHTML);this.remove()"></iframe>
+    <section class="vh-100 gradient-custom">
+      <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="card" style="border-radius: 1rem;">
+              <div class="card-body p-5 text-center">
 
-    <div class="wrapper d-flex align-items-stretch">
+                <div class="mb-md-5 mt-md-4 pb-5">
 
-      <nav class="sidebar">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;height: 100vh;">
-            <a href="/creditwatch" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-              <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
-            </a>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto">
-              <li class="nav-item">
-                <a href="index.html" class="nav-link link-dark" aria-current="page">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#home"/></svg>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="login.php" class="nav-link link-dark">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#people-circle"/></svg>
-                  Login
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link active">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#person-plus-fill"/></svg>
-                  Register
-                </a>
-              </li>
-              <li>
-                <a href="contact.php" class="nav-link link-dark">
-                  <svg class="bi pe-none me-2" width="16" height="16"><use xlink:href="#telephone-fill"/></svg>
-                  Contact Us
-                </a>
-              </li>
-            </ul>
+                  <img class="bi pe-none me-2" width="240" height="32" src="img/creditwatch_long.png">
+                  <p class="mb-5"><br>Please enter your new user details!</p>
+                
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                    
+                        <div class="form-outline mb-4">
+                            <label>Username</label>
+                            <input type="text" name="username" maxlength="50" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
+                            <span class="invalid-feedback"><?php echo $username_err; ?></span>
+                        </div>    
+                        <div class="form-outline mb-4">
+                            <label>Password</label>
+                            <input type="password" name="password" maxlength="255" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
+                            <span class="invalid-feedback"><?php echo $password_err; ?></span>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label>Confirm Password</label>
+                            <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
+                            <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label>E-mail</label>
+                            <input type="email" name="email" maxlength="255" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
+                            <span class="invalid-feedback"><?php echo $email_err; ?></span>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label>Security Question</label>
+                            <input type="text" name="sec_question" maxlength="100" class="form-control <?php echo (!empty($sec_question_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_question; ?>">
+                            <span class="invalid-feedback"><?php echo $sec_question_err; ?></span>
+                        </div>
+                        <div class="form-outline mb-4">
+                            <label>Security Question Answer</label>
+                            <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
+                            <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
+                        </div>
+
+                            <input type="submit" class="d-none d-sm-inline-block btn btn-danger shadow-sm" value="Submit">
+                            <input type="reset" class="d-none d-sm-inline-block btn btn-secondary ml-2 shadow-sm" value="Reset">
+
+                        
+                    </form>
+
+
+                </div>
+
+                <div>
+                  <p class="mb-0">Already have an account? <a href="login.php" class="text-danger fw-bold">Login here</a></p>
+                </div>
+
+              </div>
+            </div>
           </div>
-      </nav>
-
-      <div class="container">
-
-        <div class="col-md-8 py-5">
-            <h2>Sign Up</h2>
-            <p>Please fill this form to create an account.</p>
         </div>
-
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-          <div class="col-md-4">
-            <div class="form-group">
-                <label>Username</label>
-                <input type="text" name="username" maxlength="50" class="form-control <?php echo (!empty($username_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $username; ?>">
-                <span class="invalid-feedback"><?php echo $username_err; ?></span>
-            </div>    
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" name="password" maxlength="255" class="form-control <?php echo (!empty($password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $password; ?>">
-                <span class="invalid-feedback"><?php echo $password_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control <?php echo (!empty($confirm_password_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_password; ?>">
-                <span class="invalid-feedback"><?php echo $confirm_password_err; ?></span>
-            </div>
-			<div class="form-group">
-                <label>E-mail</label>
-                <input type="email" name="email" maxlength="255" class="form-control <?php echo (!empty($email_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $email; ?>">
-                <span class="invalid-feedback"><?php echo $email_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Security Question</label>
-                <input type="text" name="sec_question" maxlength="100" class="form-control <?php echo (!empty($sec_question_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_question; ?>">
-                <span class="invalid-feedback"><?php echo $sec_question_err; ?></span>
-            </div>
-            <div class="form-group">
-                <label>Security Question Answer</label>
-                <input type="text" name="sec_answer" maxlength="100" class="form-control <?php echo (!empty($sec_answer_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $sec_answer; ?>">
-                <span class="invalid-feedback"><?php echo $sec_answer_err; ?></span>
-            </div><hr>
-            <div class="form-group d-sm-flex align-items-center justify-content-between">
-                <div class="mb-0">Already have an account? <a href="login.php">Login here</a>.</div>
-                <input type="submit" class="d-none d-sm-inline-block btn btn-primary shadow-sm" value="Submit">
-                <input type="reset" class="d-none d-sm-inline-block btn btn-secondary ml-2 shadow-sm" value="Reset">
-            </div>
-            
-          </div>
-        </form>
-
       </div>
-        
-    </div>
+    </section>
+
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/sidebars.js"></script>
 </body>
 </html>
