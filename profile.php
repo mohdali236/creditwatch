@@ -8,10 +8,29 @@
 
     // Start the database manger
     require_once "ctl/dbmanager.php";
-     
+
     // Define variables and initialize with empty values
     $name = $surname = $phone = $address1 = $address2 = $zipcode = $city = $state = $country = $email = $username = $id = $result = "";
-     
+
+
+    // Pull current profile details
+    $param_username = $_SESSION['username'];
+
+    $stmt = $link->prepare('SELECT name, surname, phone, address1, address2, zipcode, city, state, country FROM contact WHERE username = ?');
+    $stmt->bind_param('s', $param_username);
+    $stmt->execute();
+    $stmt->bind_result($name, $surname, $phone, $address1, $address2, $zipcode, $city, $state, $country);
+    $stmt->fetch();
+    $stmt->close();    
+
+    $stmt = $link->prepare('SELECT email FROM users WHERE username = ?');
+    $stmt->bind_param('s', $param_username);
+    $stmt->execute();
+    $stmt->bind_result($email);
+    $stmt->fetch();
+    $stmt->close();
+
+
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
      
@@ -136,31 +155,31 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Address Line 1</label>
-                                    <input type="text" name="address1" class="form-control" value="<?php echo $address1; ?>" placeholder="1234 Main St">
+                                    <input type="text" name="address1" class="form-control" value="<?php echo $address1; ?>">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Address Line 2</label>
-                                    <input type="text" name="address2" class="form-control" value="<?php echo $address2; ?>" placeholder="Apartment or suite">
+                                    <input type="text" name="address2" class="form-control" value="<?php echo $address2; ?>">
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label class="labels">City</label>
-                                    <input type="text" name="city" class="form-control" value="<?php echo $city; ?>" placeholder="Richardson">
+                                    <input type="text" name="city" class="form-control" value="<?php echo $city; ?>">
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label class="labels">State</label>
-                                    <input type="text" name="state" class="form-control" value="<?php echo $state; ?>" placeholder="Texas">
+                                    <input type="text" name="state" class="form-control" value="<?php echo $state; ?>">
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label class="labels">Zip</label>
-                                    <input type="number" name="zipcode" class="form-control" value="<?php echo $zipcode; ?>">
+                                    <input type="number" name="zipcode" class="form-control" value="<?php echo $zipcode; ?>" min="00000" max="99999">
                                 </div>
                                 <div class="col-md-3 form-group">
                                     <label class="labels">Country</label>
-                                    <input type="text" name="country" class="form-control" value="<?php echo $country; ?>" placeholder="USA">
+                                    <input type="text" name="country" class="form-control" value="<?php echo $country; ?>">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="labels">Email</label>
-                                    <input type="email" name="email" class="form-control" value="<?php echo $email; ?>" placeholder="you@example.com">
+                                    <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
                                 </div>
                             </div>
                             <hr class="mb-4">

@@ -111,7 +111,7 @@
       <div class="container rounded bg-white">
 
         <div class="col-md-8 py-5">
-            <h2>Payments Portal</h2>
+            <h2>Payment Details Portal</h2>
         </div>
 
         <div class="row">
@@ -219,7 +219,7 @@
                     </div>
                     
                     <hr class="mb-4">
-                    <button class="btn btn-primary" type="Submit">Submit Payment</button>
+                    <button class="btn btn-danger" type="Submit">Save Payment Details</button>
                 </form>
             </div>
         </div>

@@ -106,7 +106,7 @@
 
           <form action="" method="POST" enctype="multipart/form-data">
             <input type="file" name="csv" />
-            <input type="submit"/>
+            <input type="submit" class="btn btn-danger" value="Upload CSV File" />
             <br><br>
             <ul>
                <li>Sent file: <?php echo $_FILES['csv']['name'];  ?>

@@ -96,7 +96,7 @@
                   <div class="col-xl-8 col-lg-8">
                       <div class="card shadow mb-4">
                           <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
+                              <a href="#"><i class="fas fa-trash-can fa-sm danger"></i></a>
                               &nbsp;Notification 1
                           </div>
                       </div>

@@ -109,7 +109,7 @@
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <h2 class="mb-0 text-black">Fraud Dashboard</h2>
-                    <a href="eventdrilldown.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
+                    <a href="eventdrilldown.php" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i class="fas fa-circle-info fa-sm text-white-50"></i> Fraud Event Drilldown</a>                    
                 </div>
 
                 <div class="row">
