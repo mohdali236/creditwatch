@@ -6,6 +6,12 @@
     // Check if the user is logged in, if not then redirect him to login page
     require_once "ctl/logincheck.php";
 
+    // Start the database manger
+    require_once "ctl/dbmanager.php";
+
+    // Start the database manger
+    require_once "ctl/activationdetails.php";
+
 ?>
  
 <!DOCTYPE html>
@@ -87,17 +93,45 @@
         </div>
       </nav>
 
-      <div class="container">
+      <div class="container rounded bg-white">
+        <div class="col-md-8 py-5">
           <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to</h1>
-          <img src="img/creditwatch_large.png" height="275"><br><br><br><br>       
-          <p>
-              <!-- <a href="activate.php" class="btn btn-success">Activate CreditWatch Services</a> -->
-              <input type=“text” name=“cust_num” id="cust_num" value="" placeholder="# of Accounts">
+        </div>
+        <div class="row">
+          <div class="col-md-8 order-md-1">
+
+            <img src="img/creditwatch_large.png" height="275"> <br><br><br><br>
+
+            <div class="form-group">      
+
+              <label for=“cust_num”># of Accounts:</label> &nbsp;
+              <input type=“text” name=“cust_num” id="cust_num" value="" placeholder="" required> &nbsp;
               <input type="button" class="btn btn-success" name="activate" id="activate" value="Activate CreditWatch Services" 
                      onclick="location.href='ctl/activate.php?cust_num='+ document.getElementById('cust_num').value;">
-              <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+              
+            </div>
 
-          </p>
+            <br><br><br>
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Total Accounts Activated:</strong>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <span><?php echo $totalactivated; ?></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <strong>Total Accounts Monitored:</strong>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <span><?php echo $totalmonitored; ?></span>
+                </div>
+            </div>
+
+          </div>
+        </div>
       </div>
 
     </div>

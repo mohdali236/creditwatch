@@ -107,6 +107,14 @@
 
           <hr><br>
 
+          <?php 
+              if(!empty($result)){
+                  echo '<div class="alert alert-primary">' . $result . '</div><br>';
+              } elseif (!empty($error)) {
+                  echo '<div class="alert alert-danger">' . $error . '</div><br>';
+              }       
+          ?>
+
           <form action="" method="POST" enctype="multipart/form-data">
             <input type="file" name="csv" />
             <input type="submit" class="btn btn-danger" value="Upload CSV File" />
@@ -116,8 +124,6 @@
                <li>File size: <?php echo $_FILES['csv']['size'], " bytes";  ?>
                <li>File type: <?php echo $_FILES['csv']['type'] ?>
             </ul>
-            <br>
-            <?php echo $error; echo $result; ?>
           </form>
         </div>
 

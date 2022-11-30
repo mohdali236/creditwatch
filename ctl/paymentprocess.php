@@ -74,7 +74,7 @@
                     $finaldatedue = 'None';
                     
                     // response if payment is successful
-                    $result = "Payment was successful!";
+                    $result = "Payment details updated successfully.";
 
                     // Generate successful account creation notification
                     $notfication_username = $_SESSION['username'];

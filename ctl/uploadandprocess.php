@@ -34,7 +34,7 @@
             // Process transactions CSV file with fraudDetect
             require_once "data/exec-fraud.php";
 
-            $result = "Transactions processed succesfully.";
+            $result = "Transactions uploaded and processed succesfully.";
          
          }else{
             
