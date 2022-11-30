@@ -28,6 +28,11 @@
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt2)){
 
+                        // Generate successfull account creation notification
+                        $notfication_username = $username;
+                        $notfication_message = "CreditWatch account \"" . $username . "\" created at " . date("F j, Y, g:i a") . ".";
+                        require_once "generatenotification.php";
+
                         // Redirect after successful registration
                         header("location: login.php");
                     }

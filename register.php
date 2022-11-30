@@ -6,6 +6,7 @@
     // Define variables and initialize with empty values
     $username = $password = $confirm_password = $email = $sec_question = $sec_answer = "";
     $username_err = $password_err = $confirm_password_err = $email_err = $sec_question_err = $sec_answer_err = "";
+    $notfication_username = $notfication_message = ""; // Empty vars for account creation notification
      
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){

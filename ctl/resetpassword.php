@@ -39,6 +39,11 @@
                     
                     // Attempt to execute the prepared statement
                     if(mysqli_stmt_execute($stmt)){
+
+                        // Generate notification for password updated
+                        $notfication_username = $_SESSION['username'];
+                        $notfication_message = "User password successfully updated at " . date("F j, Y, g:i a") . ".";
+                        require_once "generatenotification.php";
                         
                         // Password updated successfully. Destroy the session, and redirect to login page
                         session_destroy();

@@ -57,3 +57,12 @@ main {
 .scrollarea {
   overflow-y: auto;
 }
+
+.nav-pills {
+    --bs-nav-pills-link-active-color: #fff !important;
+    --bs-nav-pills-link-active-bg: #eb0d15 !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+    --bs-dropdown-link-active-color: #fff !important;
+    --bs-dropdown-link-active-bg: #eb0d15 !important;
+}

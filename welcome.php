@@ -89,16 +89,14 @@
 
       <div class="container">
           <h1 class="my-5">Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to</h1>
-          <img src="img/creditwatch_large.png" height="275"><br><br><br><br>
-          <p>
-              <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-              <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-          </p>          
+          <img src="img/creditwatch_large.png" height="275"><br><br><br><br>       
           <p>
               <!-- <a href="activate.php" class="btn btn-success">Activate CreditWatch Services</a> -->
-              <input type=“text” name=“cust_num” id="cust_num" value="" placeholder="# of Customers">
-              <input type="button" class="btn btn-success" name="activate" id="activate" value="Activate CreditWatch Service" 
+              <input type=“text” name=“cust_num” id="cust_num" value="" placeholder="# of Accounts">
+              <input type="button" class="btn btn-success" name="activate" id="activate" value="Activate CreditWatch Services" 
                      onclick="location.href='ctl/activate.php?cust_num='+ document.getElementById('cust_num').value;">
+              <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
+
           </p>
       </div>
 

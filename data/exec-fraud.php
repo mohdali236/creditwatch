@@ -1,7 +1,7 @@
 <?php
 
-	// Start the database manger
-    require_once "ctl/dbmanager.php";
+    // Fraud counter for notification
+    $counter = 0;
 
 	// Run fraudDetect script on remote server
 	$fraudDetect = shell_exec("data/fraudDetect.sh");
@@ -34,9 +34,35 @@
         // Execute the prepared statement
         mysqli_stmt_execute($stmt);
 
+        if($param_isfraud){
+        	$counter++;
+        }
+
 	}
 
     // Close statement
     mysqli_stmt_close($stmt);
+
+    // Generate notification for successful processing of transaction data
+    $notfication_username = $_SESSION['username'];
+    $notfication_message = "Fraud detection processing completed at " . date("F j, Y, g:i a") . ", and it found " . $counter . " fraudulent transactions.";
+    
+    // Prepare an insert statement
+    $notifsql = "INSERT INTO notifications (username, message) VALUES (?, ?)";
+
+    if($notifstmt = mysqli_prepare($link, $notifsql)){
+        // Bind variables to the prepared statement as parameters
+        mysqli_stmt_bind_param($notifstmt, "ss", $param_username, $param_message);
+      
+        // Set parameters
+        $param_username = $notfication_username;
+        $param_message = $notfication_message;
+        
+        // Execute the prepared statement
+        mysqli_stmt_execute($notifstmt);
+
+        // Close statement
+        mysqli_stmt_close($notifstmt);
+    }
 
 ?>

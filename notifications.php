@@ -6,6 +6,17 @@
     // Check if the user is logged in, if not then redirect him to login page
     require_once "ctl/logincheck.php";
 
+    // Start the database manger
+    require_once "ctl/dbmanager.php";
+
+    $result = ""; // Result message variable for display if user deletes a notification
+
+    // If notif_id is set in URL, then update is_deleted field for notification record
+    if(!empty($_GET['notif_id'])){
+      $notif_id = $_GET['notif_id'];
+      require_once "ctl/delnotifications.php";
+    }
+
 ?>
  
 <!DOCTYPE html>
@@ -19,6 +30,7 @@
     <link href="css/all.min.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/sidebars.css" rel="stylesheet">
+    <style type="text/css">.fas.icon-red {color: red;}</style>
 </head>
 <body>
 
@@ -91,43 +103,15 @@
       <div class="container">
               <h2 class="my-5">Notifications Dashboard</h2>
 
+                <?php 
+                    if(!empty($result)){
+                        echo '<div class="alert alert-primary">' . $result . '</div><br>';
+                    }        
+                ?>
+
                 <div class="row">
 
-                  <div class="col-xl-8 col-lg-8">
-                      <div class="card shadow mb-4">
-                          <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm danger"></i></a>
-                              &nbsp;Notification 1
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-xl-8 col-lg-8">
-                      <div class="card shadow mb-4">
-                          <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
-                              &nbsp;Notification 2
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-xl-8 col-lg-8">
-                      <div class="card shadow mb-4">
-                          <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
-                              &nbsp;Notification 3
-                          </div>
-                      </div>
-                  </div>
-
-                  <div class="col-xl-8 col-lg-8">
-                      <div class="card shadow mb-4">
-                          <div class="card-body">
-                              <a href="#"><i class="fas fa-trash-can fa-sm"></i></a>
-                              &nbsp;Notification 4
-                          </div>
-                      </div>
-                  </div>
+                  <?php require_once "ctl/fetchnotifications.php"; ?>
 
                 </div>
 

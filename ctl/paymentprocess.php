@@ -75,6 +75,12 @@
                     
                     // response if payment is successful
                     $result = "Payment was successful!";
+
+                    // Generate successful account creation notification
+                    $notfication_username = $_SESSION['username'];
+                    $notfication_message = "Successfully submitted payment details at " . date("F j, Y, g:i a") . ".";
+                    require_once "generatenotification.php";
+
                 } else{
                     $result = "Oops! Something went wrong. Please try again later.";
                 }

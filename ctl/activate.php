@@ -3,7 +3,7 @@
     // Initialize the session
     session_start();
      
-    // Check if the user is logged in, if not then redirect him to login page
+    // Check if the user is logged in, if not then redirect them to the login page
     require_once "logincheck.php";
 
     // Start the database manger
@@ -25,6 +25,11 @@
         
         // Attempt to execute the prepared statement
         if(mysqli_stmt_execute($stmt)){
+
+            // Generate successfull activation notification
+            $notfication_username = $_SESSION['username'];
+            $notfication_message = "Successfully activated " . $param_cust_num . " accounts at " . date("F j, Y, g:i a") . ".";
+            require_once "generatenotification.php";
 
             // Successful activation response
             echo '<br><p>Successfully activated services for ' . $param_cust_num . ' customers.</p>';

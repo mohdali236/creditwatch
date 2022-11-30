@@ -12,24 +12,8 @@
     // Define variables and initialize with empty values
     $name = $surname = $phone = $address1 = $address2 = $zipcode = $city = $state = $country = $email = $username = $id = $result = "";
 
-
     // Pull current profile details
-    $param_username = $_SESSION['username'];
-
-    $stmt = $link->prepare('SELECT name, surname, phone, address1, address2, zipcode, city, state, country FROM contact WHERE username = ?');
-    $stmt->bind_param('s', $param_username);
-    $stmt->execute();
-    $stmt->bind_result($name, $surname, $phone, $address1, $address2, $zipcode, $city, $state, $country);
-    $stmt->fetch();
-    $stmt->close();    
-
-    $stmt = $link->prepare('SELECT email FROM users WHERE username = ?');
-    $stmt->bind_param('s', $param_username);
-    $stmt->execute();
-    $stmt->bind_result($email);
-    $stmt->fetch();
-    $stmt->close();
-
+    require_once "ctl/profiledetails.php";
 
     // Processing form data when form is submitted
     if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -125,18 +109,17 @@
 
         <div class="container rounded bg-white">
 
-            <div class="form-group">
-                <div class="col-sm-10 col-sm-offset-2">
-                    <?php echo $result; ?>    
-                </div>
-            </div>
-
             <div class="row">
                 <div class="col-md-6 border-right">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <h2 class="text-right">Profile Settings</h2>
                         </div><br>
+                        <?php 
+                            if(!empty($result)){
+                                echo '<div class="alert alert-primary">' . $result . '</div><br>';
+                            }        
+                        ?>
                         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="row mt-2">
                                 <div class="col-md-6 form-group">
@@ -184,7 +167,7 @@
                             </div>
                             <hr class="mb-4">
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Save Profile">
+                                <input type="submit" class="btn btn-primary" value="Update Profile Details">
                                 <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
                                 <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
                             </div>

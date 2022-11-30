@@ -6,6 +6,9 @@
     // Check if the user is logged in, if not then redirect him to login page
     require_once "ctl/logincheck.php";
 
+    // Start the database manger
+    require_once "ctl/dbmanager.php";
+
     // Controller for upload and fraudDetect on CSV file
     require_once "ctl/uploadandprocess.php";
 

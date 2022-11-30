@@ -126,7 +126,7 @@
         if($stmt = mysqli_prepare($link, $sql)){
             mysqli_stmt_bind_param($stmt, "is", $zipcode, $username);
             if(mysqli_stmt_execute($stmt)){
-                $result .= "ZipCode, ";
+                $result .= "Zip, ";
                 mysqli_stmt_close($stmt);
             } else { $failed = 1; }
         }
@@ -176,10 +176,19 @@
         }
     }
 
-$result .= "updated successfully.";
+$result = substr($result, 0, -2); // trim comma after last updated field
+$result = substr_replace($result, ", and", strrpos($result, ','), 1); // add and just before last updated item
+$result .= " details updated"; // result output completed successully
+
+// Generate successful profile/contact detail update notification
+$notfication_username = $_SESSION['username'];
+$notfication_message = $result . " at " . date("F j, Y, g:i a") . ".";
+require_once "generatenotification.php";
+
+$result .= " successfully."; // result output formatting
 
 if($failed == 1){
-    $result = "Oops! Something went wrong. Please try again later.";
+    $result = "Oops! Something went wrong. Please try again later."; // result for failed profile update
 }
     
 ?>
