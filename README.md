@@ -19,3 +19,6 @@ fraudDetect/src - C++ binary application for processing transaction data for fra
 &nbsp;&nbsp;To build fraudDetect<br />
 &nbsp;&nbsp;&nbsp;&nbsp;make fraudDetect/src<br />
 &nbsp;&nbsp;&nbsp;&nbsp;make --build fraudDetect/src
+
+Running it needs a server. Server currently hosted on 
+https://ohmydar.win/creditwatch/login.php
